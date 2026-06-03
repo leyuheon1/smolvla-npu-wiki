@@ -7,4 +7,5 @@ theme:
 nav:
   - Home: index.md
   - smolvla_npu.py: smolvla_npu.md
+  - installation/replication: installation/installation.md
   
