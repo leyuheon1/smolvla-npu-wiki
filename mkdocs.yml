@@ -6,16 +6,5 @@ theme:
 
 nav:
   - Home: index.md
-  - smolvla_npu.py:
-      - Overview: smolvla_npu.md
-      - Shared Helpers: smolvla_npu/shared-helpers.md
-      - Vision Prefix: smolvla_npu/vision-prefix.md
-      - State Prefix: smolvla_npu/state-prefix.md
-      - Text Prefix Cache: smolvla_npu/text-prefix-cache.md
-      - Action Suffix: smolvla_npu/action-suffix.md
-      - Expert Denoise: smolvla_npu/expert-denoise.md
-      - Attention: smolvla_npu/attention.md
-      - MLP: smolvla_npu/mlp.md
-      - Policy Wrapper: smolvla_npu/policy-wrapper.md
-      - Profiling: smolvla_npu/profiling.md
-      - CLI Probe: smolvla_npu/cli-probe.md
+  - smolvla_npu.py: smolvla_npu.md
+  
