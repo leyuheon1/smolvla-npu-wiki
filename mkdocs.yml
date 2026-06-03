@@ -4,8 +4,22 @@ site_url: https://leyuheon1.github.io/smolvla-npu-wiki/
 theme:
   name: material
 
+markdown_extensions:
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid-source
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
 nav:
   - Home: index.md
   - smolvla_npu.py: smolvla_npu.md
   - installation/replication: installation/installation.md
   
+extra_javascript:
+  # Load the pan/zoom library via CDN
+  - https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js
+  # Load Mermaid for diagrams that need custom pan/zoom behavior
+  - https://cdn.jsdelivr.net/npm/mermaid@10.9.3/dist/mermaid.min.js
+  # Load our custom initialization script
+  - javascripts/mermaid-zoom.js
