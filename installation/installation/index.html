@@ -1,0 +1,1040 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://leyuheon1.github.io/smolvla-npu-wiki/installation/installation/">
+      
+      
+        <link rel="prev" href="../../smolvla_npu/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>installation/replication - SmolVLA on NPU</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#prerequisites" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="SmolVLA on NPU" class="md-header__button md-logo" aria-label="SmolVLA on NPU" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SmolVLA on NPU
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              installation/replication
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="SmolVLA on NPU" class="md-nav__button md-logo" aria-label="SmolVLA on NPU" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    SmolVLA on NPU
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../smolvla_npu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    smolvla_npu.py
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    installation/replication
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    installation/replication
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-pytorch-on-igpu-for-strix-halo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running Pytorch on iGPU for Strix Halo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Running Pytorch on iGPU for Strix Halo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conda-level-setup-for-iron" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conda-level setup for IRON
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reproducing-the-project-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reproducing the project results
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reproducing the project results">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-install-the-external-benchmark-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Install the external benchmark dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-download-or-provide-the-smolvla-libero-checkpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Download or provide the SmolVLA LIBERO checkpoint
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-run-the-npu-libero-spatial-benchmark-10-tasks-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Run the NPU LIBERO Spatial benchmark (10 tasks version)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-compare-with-the-igpu-baseline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Compare with the iGPU baseline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-optional-paper-style-spatial-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Optional paper-style Spatial run
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-pytorch-on-igpu-for-strix-halo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running Pytorch on iGPU for Strix Halo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Running Pytorch on iGPU for Strix Halo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conda-level-setup-for-iron" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conda-level setup for IRON
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reproducing-the-project-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reproducing the project results
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reproducing the project results">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-install-the-external-benchmark-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Install the external benchmark dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-download-or-provide-the-smolvla-libero-checkpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Download or provide the SmolVLA LIBERO checkpoint
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-run-the-npu-libero-spatial-benchmark-10-tasks-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Run the NPU LIBERO Spatial benchmark (10 tasks version)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-compare-with-the-igpu-baseline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Compare with the iGPU baseline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-optional-paper-style-spatial-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Optional paper-style Spatial run
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>installation/replication</h1>
+
+<p>To properly reproduce the result from this project, you need to install the necessary environments for IRON, Pytorch and ROCm. Please follow the installation guide correctly for correct reproduction of the results.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>All experiments for this project were conducted on Fedora Linux 43 KDE using an AMD Ryzen AI MAX+ 395 platform. You have to upgrade your kernel to 6.19+ for the following guide to work. I used miniforge conda to mangage python environments.</p>
+<h2 id="running-pytorch-on-igpu-for-strix-halo">Running Pytorch on iGPU for Strix Halo</h2>
+<p>To reproduce the iGPU result from this project, you should be able to run Pytorch on iGPU for Strix Halo Architecture. To do so, please follow the following steps : </p>
+<ol>
+<li>Run the following commands
+<div class="highlight"><pre><span></span><code>sudo dnf install -y kernel-headers gcc make
+</code></pre></div></li>
+<li>create conda environment
+<div class="highlight"><pre><span></span><code>conda create --name &lt;name&gt; python=3.11 -y
+</code></pre></div></li>
+<li>Install ROCm from TheRock
+<div class="highlight"><pre><span></span><code>pip install --index-url https://rocm.nightlies.amd.com/v2/gfx1151/ &quot;rocm[libraries,devel]&quot;
+</code></pre></div></li>
+<li>Install Pytorch from TheRock
+<div class="highlight"><pre><span></span><code>pip install --index-url https://rocm.nightlies.amd.com/v2/gfx1151/ torch torchaudio torchvision
+
+
+
+## Installing environment for IRON
+
+The official AMD IRON setup instructions target Ubuntu 24.04. The following instructions describe how to set up IRON on Fedora 43 using Miniforge Conda. The setup is separated into two parts:
+
+* **System-level setup**: install and build XRT, the XDNA driver, firmware, and `pyxrt`.
+* **Conda-level setup**: create a Python environment and install the IRON Python dependencies.
+
+The system-level setup only needs to be done once per machine, unless you reinstall Fedora, intentionally update XRT/XDNA, switch to a different Python minor version for `pyxrt`, or a kernel update breaks DKMS. The Conda-level setup is what you repeat for each new IRON environment.
+
+---
+
+### System-level setup
+
+Disable Secure Boot in BIOS before starting.
+
+Then check the kernel and required kernel options:
+
+```bash
+uname -r
+mokutil --sb-state || true
+grep -E &#39;CONFIG_AMD_IOMMU=|CONFIG_DRM_ACCEL=&#39; /boot/config-$(uname -r)
+</code></pre></div></li>
+</ol>
+<p>Expected:</p>
+<div class="highlight"><pre><span></span><code>SecureBoot disabled
+CONFIG_AMD_IOMMU=y
+CONFIG_DRM_ACCEL=y
+</code></pre></div>
+<p>Choose a build directory. This guide uses variables so the path can be changed freely:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">WORKDIR</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/src/amd-iron-fedora-build&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">XDNA_REPO</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$WORKDIR</span><span class="s2">/xdna-driver&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">IRON_REPO</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$WORKDIR</span><span class="s2">/IRON&quot;</span>
+</code></pre></div>
+<p>Install matching kernel development files:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>dnf<span class="w"> </span>upgrade<span class="w"> </span>--refresh<span class="w"> </span>-y
+sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>kernel-devel-<span class="k">$(</span>uname<span class="w"> </span>-r<span class="k">)</span><span class="w"> </span>kernel-headers
+</code></pre></div>
+<p>Install system build dependencies:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>git<span class="w"> </span>jq<span class="w"> </span>curl<span class="w"> </span>wget<span class="w"> </span>dnf-plugins-core<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>gcc<span class="w"> </span>gcc-c++<span class="w"> </span>make<span class="w"> </span>cmake<span class="w"> </span>ninja-build<span class="w"> </span>clang<span class="w"> </span>lld<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>dkms<span class="w"> </span>pciutils<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>boost-devel<span class="w"> </span>boost-filesystem<span class="w"> </span>boost-program-options<span class="w"> </span>boost-static<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>elfutils-devel<span class="w"> </span>elfutils-libs<span class="w"> </span>gnutls-devel<span class="w"> </span>gtest-devel<span class="w"> </span>json-glib-devel<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>libcurl-devel<span class="w"> </span>libdrm-devel<span class="w"> </span>libffi-devel<span class="w"> </span>libjpeg-turbo-devel<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>libstdc++-static<span class="w"> </span>libtiff-devel<span class="w"> </span>libuuid-devel<span class="w"> </span>libyaml-devel<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>lm_sensors<span class="w"> </span>ncurses-devel<span class="w"> </span>opencl-headers<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>openssl-devel<span class="w"> </span>perl<span class="w"> </span>pkgconf-pkg-config<span class="w"> </span>protobuf-compiler<span class="w"> </span>protobuf-devel<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>python3-devel<span class="w"> </span>python3-pip<span class="w"> </span>rapidjson-devel<span class="w"> </span>rpm-build<span class="w"> </span>strace<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>systemd-devel<span class="w"> </span>systemtap-sdt-devel<span class="w"> </span>unzip<span class="w"> </span>zlib-static<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>pybind11-devel<span class="w"> </span>python3-pybind11<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>rocm-hip-devel
+</code></pre></div>
+<p>XRT’s OpenCL/XOCL code expects <code>ocl_icd.h</code>, so install Fedora’s <code>ocl-icd-devel</code> package:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>ocl-icd<span class="w"> </span>ocl-icd-devel<span class="w"> </span>--allowerasing
+</code></pre></div>
+<p>This may replace Fedora’s Khronos <code>OpenCL-ICD-Loader</code> package. That is expected.</p>
+<p>Verify OpenCL headers and libraries:</p>
+<div class="highlight"><pre><span></span><code>rpm<span class="w"> </span>-ql<span class="w"> </span>ocl-icd-devel<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;ocl_icd.h\|libOpenCL.so&#39;</span>
+ldconfig<span class="w"> </span>-p<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span>opencl
+</code></pre></div>
+<p>Create a Conda build environment for XRT. This is used so XRT builds <code>pyxrt</code> for Python 3.12 instead of Fedora’s system Python:</p>
+<div class="highlight"><pre><span></span><code>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>xrt-build-py312<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.12<span class="w"> </span>pip<span class="w"> </span>setuptools<span class="w"> </span>wheel<span class="w"> </span>cmake<span class="w"> </span>ninja<span class="w"> </span>pybind11<span class="w"> </span>-y
+conda<span class="w"> </span>activate<span class="w"> </span>xrt-build-py312
+python<span class="w"> </span>--version
+</code></pre></div>
+<p>Clone the XDNA driver repository and its XRT submodule:</p>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$WORKDIR</span><span class="s2">&quot;</span>
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/amd/xdna-driver.git<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$XDNA_REPO</span><span class="s2">&quot;</span>
+<span class="nb">cd</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$XDNA_REPO</span><span class="s2">&quot;</span>
+git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w"> </span>--init<span class="w"> </span>--recursive
+</code></pre></div>
+<p>Run the dependency helper:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$XDNA_REPO</span><span class="s2">&quot;</span>
+sudo<span class="w"> </span>./tools/amdxdna_deps.sh
+</code></pre></div>
+<p>If it fails because <code>redhat-lsb</code> conflicts with <code>lsb_release</code>, patch that dependency out and rerun the helper:</p>
+<div class="highlight"><pre><span></span><code>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;/redhat-lsb \\/d&#39;</span><span class="w"> </span>xrt/src/runtime_src/tools/scripts/xrtdeps.sh
+sudo<span class="w"> </span>./tools/amdxdna_deps.sh
+</code></pre></div>
+<p>Build XRT for Conda Python 3.12:</p>
+<div class="highlight"><pre><span></span><code>conda<span class="w"> </span>activate<span class="w"> </span>xrt-build-py312
+<span class="nb">cd</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$XDNA_REPO</span><span class="s2">/xrt/build&quot;</span>
+
+./build.sh<span class="w"> </span>clean<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">true</span>
+
+<span class="nb">export</span><span class="w"> </span><span class="nv">VIRTUAL_ENV</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$CONDA_PREFIX</span><span class="s2">&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">CMAKE_PREFIX_PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$CONDA_PREFIX</span><span class="s2">:</span><span class="si">${</span><span class="nv">CMAKE_PREFIX_PATH</span><span class="k">:-</span><span class="si">}</span><span class="s2">&quot;</span>
+
+./build.sh<span class="w"> </span>-npu<span class="w"> </span>-opt<span class="w"> </span>-noctest<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-cmake-flags<span class="w"> </span><span class="s2">&quot;-DPython3_FIND_VIRTUALENV=ONLY -DPython3_EXECUTABLE=</span><span class="nv">$CONDA_PREFIX</span><span class="s2">/bin/python3 -DPython3_ROOT_DIR=</span><span class="nv">$CONDA_PREFIX</span><span class="s2"> -DPython3_INCLUDE_DIR=</span><span class="nv">$CONDA_PREFIX</span><span class="s2">/include/python3.12 -DPython3_LIBRARY=</span><span class="nv">$CONDA_PREFIX</span><span class="s2">/lib/libpython3.12.so -DPYTHON_EXECUTABLE=</span><span class="nv">$CONDA_PREFIX</span><span class="s2">/bin/python3 -DOpenCL_LIBRARY=/usr/lib64/libOpenCL.so -DOpenCL_INCLUDE_DIR=/usr/include&quot;</span>
+</code></pre></div>
+<p>During the CMake configuration step, check that it uses Python 3.12, not Fedora’s system Python:</p>
+<div class="highlight"><pre><span></span><code>Virtual environment detected, using Python3: .../envs/xrt-build-py312/bin/python3
+Python libs version: 3.12.x
+</code></pre></div>
+<p>After the build completes, verify that <code>pyxrt</code> was built for Python 3.12:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$XDNA_REPO</span><span class="s2">/xrt/build/Release&quot;</span>
+find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s1">&#39;pyxrt*.so&#39;</span><span class="w"> </span>-print
+</code></pre></div>
+<p>Expected:</p>
+<div class="highlight"><pre><span></span><code>pyxrt.cpython-312-x86_64-linux-gnu.so
+</code></pre></div>
+<p>Install the XRT RPMs:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$XDNA_REPO</span><span class="s2">/xrt/build/Release&quot;</span>
+sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>./*.rpm
+</code></pre></div>
+<p>Test XRT and <code>pyxrt</code>:</p>
+<div class="highlight"><pre><span></span><code>conda<span class="w"> </span>activate<span class="w"> </span>xrt-build-py312
+<span class="nb">source</span><span class="w"> </span>/opt/xilinx/xrt/setup.sh
+
+which<span class="w"> </span>xrt-smi
+xrt-smi<span class="w"> </span>--help
+python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import pyxrt; print(&#39;pyxrt OK&#39;)&quot;</span>
+</code></pre></div>
+<p>Build and install the XDNA plugin/driver:</p>
+<div class="highlight"><pre><span></span><code>conda<span class="w"> </span>activate<span class="w"> </span>xrt-build-py312
+<span class="nb">source</span><span class="w"> </span>/opt/xilinx/xrt/setup.sh
+
+<span class="nb">cd</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$XDNA_REPO</span><span class="s2">/build&quot;</span>
+./build.sh<span class="w"> </span>-release<span class="w"> </span>-j<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>nproc<span class="k">)</span><span class="s2">&quot;</span>
+</code></pre></div>
+<p>Install the generated XDNA plugin RPM:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$XDNA_REPO</span><span class="s2">/build/Release&quot;</span>
+ls<span class="w"> </span>-lh<span class="w"> </span>*.rpm
+sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>./*.rpm
+</code></pre></div>
+<p>Set permissions and reboot:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>render<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$USER</span><span class="s2">&quot;</span>
+
+sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/etc/security/limits.d
+sudo<span class="w"> </span>tee<span class="w"> </span>/etc/security/limits.d/99-amdxdna.conf<span class="w"> </span>&gt;<span class="w"> </span>/dev/null<span class="w"> </span><span class="s">&lt;&lt;&#39;EOF&#39;</span>
+<span class="s">* soft memlock unlimited</span>
+<span class="s">* hard memlock unlimited</span>
+<span class="s">EOF</span>
+
+sudo<span class="w"> </span>reboot
+</code></pre></div>
+<p>After reboot, validate the system-level setup:</p>
+<div class="highlight"><pre><span></span><code>conda<span class="w"> </span>activate<span class="w"> </span>xrt-build-py312
+<span class="nb">source</span><span class="w"> </span>/opt/xilinx/xrt/setup.sh
+
+groups<span class="w"> </span><span class="p">|</span><span class="w"> </span>tr<span class="w"> </span><span class="s1">&#39; &#39;</span><span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;^render$&#39;</span>
+<span class="nb">ulimit</span><span class="w"> </span>-l
+
+lsmod<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>amdxdna<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">true</span>
+xrt-smi<span class="w"> </span>examine
+xrt-smi<span class="w"> </span>validate
+
+python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import pyxrt; print(&#39;pyxrt OK&#39;)&quot;</span>
+</code></pre></div>
+<p>Expected results:</p>
+<ul>
+<li>the user is in the <code>render</code> group</li>
+<li><code>ulimit -l</code> reports <code>unlimited</code></li>
+<li>the <code>amdxdna</code> kernel module is loaded</li>
+<li><code>xrt-smi examine</code> detects the NPU</li>
+<li><code>xrt-smi validate</code> passes</li>
+<li><code>pyxrt OK</code> prints successfully</li>
+</ul>
+<p>At this point, the system-level setup is complete.</p>
+<hr />
+<h3 id="conda-level-setup-for-iron">Conda-level setup for IRON</h3>
+<p>Do this for each Conda environment where you want to use IRON.</p>
+<p>Create a Python 3.12 Conda environment:</p>
+<div class="highlight"><pre><span></span><code>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>iron312<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.12<span class="w"> </span>pip<span class="w"> </span>setuptools<span class="w"> </span>wheel<span class="w"> </span>cmake<span class="w"> </span>ninja<span class="w"> </span>pybind11<span class="w"> </span>-y
+conda<span class="w"> </span>activate<span class="w"> </span>iron312
+</code></pre></div>
+<p>Source XRT in the shell:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>/opt/xilinx/xrt/setup.sh
+python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import pyxrt; print(&#39;pyxrt OK&#39;)&quot;</span>
+</code></pre></div>
+<p>Clone IRON:</p>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$WORKDIR</span><span class="s2">&quot;</span>
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/amd/IRON.git<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$IRON_REPO</span><span class="s2">&quot;</span>
+<span class="nb">cd</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$IRON_REPO</span><span class="s2">&quot;</span>
+</code></pre></div>
+<p>Patch the known <code>llvm-aie</code> pin mismatch if it is present in <code>requirements.txt</code>:</p>
+<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>requirements.txt<span class="w"> </span>requirements.txt.bak
+
+sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/llvm-aie==21\.0\.0\.2026050601+2c363ce/llvm-aie==21.0.0.2026050601+2c363cef/&#39;</span><span class="w"> </span>requirements.txt
+</code></pre></div>
+<p>Install IRON’s Python dependencies:</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
+python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</code></pre></div>
+<p>Test the installation:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>/opt/xilinx/xrt/setup.sh
+<span class="nb">cd</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$IRON_REPO</span><span class="s2">&quot;</span>
+
+python<span class="w"> </span>-<span class="w"> </span><span class="s">&lt;&lt;&#39;PY&#39;</span>
+<span class="s">import pyxrt</span>
+<span class="s">import iron</span>
+<span class="s">print(&quot;pyxrt OK&quot;)</span>
+<span class="s">print(&quot;iron OK&quot;)</span>
+<span class="s">PY</span>
+
+pytest<span class="w"> </span>-q<span class="w"> </span>./iron/operators/axpy/<span class="w"> </span>-s
+</code></pre></div>
+<p>If the <code>axpy</code> test passes, the IRON Conda environment is working.</p>
+<p>Optional broader test:</p>
+<div class="highlight"><pre><span></span><code>pytest<span class="w"> </span>iron/operators/<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;not extensive&quot;</span><span class="w"> </span>-v
+</code></pre></div>
+<p>For each new terminal session, run:</p>
+<div class="highlight"><pre><span></span><code>conda<span class="w"> </span>activate<span class="w"> </span>iron312
+<span class="nb">source</span><span class="w"> </span>/opt/xilinx/xrt/setup.sh
+<span class="nb">cd</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$IRON_REPO</span><span class="s2">&quot;</span>
+</code></pre></div>
+<p>Only repeat the Conda-level setup for new Python environments. Do not repeat the full XRT/XDNA system setup unless the system-level installation needs to be rebuilt.</p>
+<h2 id="reproducing-the-project-results">Reproducing the project results</h2>
+<p>Please clone the repository first.</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/leyuheon1/cse145code
+</code></pre></div>
+<p>This repository only contains the IRON-based NPU implementation. The LeRobot
+and LIBERO repositories are external dependencies and should be cloned
+separately. The benchmark script in this repository plugs the NPU SmolVLA policy
+into LeRobot's existing LIBERO evaluator.</p>
+<p>The expected workspace layout is:</p>
+<div class="highlight"><pre><span></span><code>project-root/
+|-- IRON/        # this repository
+|-- lerobot/     # external LeRobot checkout
+|-- LIBERO/      # external LIBERO checkout
+`-- outputs/     # benchmark outputs
+</code></pre></div>
+<p>The paths above match the defaults used by
+<a href="iron/applications/smolvla_npu3/run_libero_benchmark.py"><code>run_libero_benchmark.py</code></a>.
+If your checkouts are somewhere else, pass <code>--libero-root</code>, <code>--checkpoint</code>, and
+<code>--output-dir</code> explicitly.</p>
+<h3 id="1-install-the-external-benchmark-dependencies">1. Install the external benchmark dependencies</h3>
+<p>Set up IRON first by following the environment instructions above. Then install
+LeRobot and LIBERO in the same Conda environment used for the NPU run:</p>
+<div class="highlight"><pre><span></span><code>conda<span class="w"> </span>activate<span class="w"> </span>iron312
+<span class="nb">source</span><span class="w"> </span>/opt/xilinx/xrt/setup.sh
+
+<span class="nb">export</span><span class="w"> </span><span class="nv">PROJECT_ROOT</span><span class="o">=</span>/path/to/project-root
+<span class="nb">cd</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PROJECT_ROOT</span><span class="s2">&quot;</span>
+
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/huggingface/lerobot.git<span class="w"> </span>lerobot
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/Lifelong-Robot-Learning/LIBERO.git<span class="w"> </span>LIBERO
+
+<span class="nb">cd</span><span class="w"> </span>lerobot
+git<span class="w"> </span>checkout<span class="w"> </span>b9ff99b84208661bfa7c8f7399bbe505cefdb7bc
+
+<span class="nb">cd</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PROJECT_ROOT</span><span class="s2">/LIBERO&quot;</span>
+git<span class="w"> </span>checkout<span class="w"> </span>8f1084e3132a39270c3a13ebe37270a43ece2a01
+python<span class="w"> </span>-<span class="w"> </span><span class="s">&lt;&lt;&#39;PY&#39;</span>
+<span class="s">from pathlib import Path</span>
+
+<span class="s">path = Path(&quot;libero/libero/benchmark/__init__.py&quot;)</span>
+<span class="s">text = path.read_text()</span>
+<span class="s">text = text.replace(</span>
+<span class="s">    &quot;init_states = torch.load(init_states_path)&quot;,</span>
+<span class="s">    &quot;init_states = torch.load(init_states_path, weights_only=False)&quot;,</span>
+<span class="s">)</span>
+<span class="s">path.write_text(text)</span>
+<span class="s">PY</span>
+
+<span class="nb">cd</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PROJECT_ROOT</span><span class="s2">/lerobot&quot;</span>
+python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--no-deps<span class="w"> </span>-e<span class="w"> </span>.
+python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>robosuite<span class="w"> </span>bddl<span class="w"> </span>future
+</code></pre></div>
+<p>The LIBERO patch is needed with newer PyTorch versions because <code>torch.load</code>
+defaults changed. Without it, LIBERO init-state loading can fail before the
+policy is evaluated.</p>
+<p>The <code>--no-deps</code> install is intentional for this project environment. IRON's
+<code>mlir-aie</code> dependency requires <code>numpy&lt;2.0</code>, while current LeRobot metadata asks
+for <code>numpy&gt;=2.0</code>. Installing LeRobot without dependency resolution avoids
+breaking the IRON environment after it has already been configured.</p>
+<p>Verify that the environment can import the required packages:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PROJECT_ROOT</span><span class="s2">&quot;</span>
+python<span class="w"> </span>-<span class="w"> </span><span class="s">&lt;&lt;&#39;PY&#39;</span>
+<span class="s">import pyxrt</span>
+<span class="s">import iron</span>
+<span class="s">import lerobot</span>
+<span class="s">import robosuite</span>
+<span class="s">import bddl</span>
+
+<span class="s">print(&quot;pyxrt OK&quot;)</span>
+<span class="s">print(&quot;iron:&quot;, iron.__file__)</span>
+<span class="s">print(&quot;lerobot:&quot;, lerobot.__file__)</span>
+<span class="s">print(&quot;LIBERO dependencies OK&quot;)</span>
+<span class="s">PY</span>
+</code></pre></div>
+<h3 id="2-download-or-provide-the-smolvla-libero-checkpoint">2. Download or provide the SmolVLA LIBERO checkpoint</h3>
+<p>The benchmark script defaults to the Hugging Face cache path for the
+<code>pepijn223/smolvla_libero</code> checkpoint:</p>
+<div class="highlight"><pre><span></span><code>$HOME/.cache/huggingface/hub/models--pepijn223--smolvla_libero/snapshots/31d453f7edd78c839a8bbc39744a292686daf0de
+</code></pre></div>
+<p>If the checkpoint is stored somewhere else, pass it with:</p>
+<div class="highlight"><pre><span></span><code>--checkpoint<span class="w"> </span>/path/to/checkpoint_directory
+</code></pre></div>
+<p>The checkpoint directory must contain both <code>config.json</code> and
+<code>model.safetensors</code>.</p>
+<h3 id="3-run-the-npu-libero-spatial-benchmark-10-tasks-version">3. Run the NPU LIBERO Spatial benchmark (10 tasks version)</h3>
+<p>This is the reproduced project result: LIBERO Spatial, 10 tasks, 1 rollout per
+task, 10 total rollouts, <code>num_steps=10</code>, and <code>n_action_steps=1</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PROJECT_ROOT</span><span class="s2">&quot;</span>
+conda<span class="w"> </span>activate<span class="w"> </span>iron312
+<span class="nb">source</span><span class="w"> </span>/opt/xilinx/xrt/setup.sh
+
+mkdir<span class="w"> </span>-p<span class="w"> </span>outputs/eval/smolvla_npu_libero_spatial_n1
+
+python<span class="w"> </span>IRON/iron/applications/smolvla_npu3/run_libero_benchmark.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output-dir<span class="w"> </span>outputs/eval/smolvla_npu_libero_spatial_n1<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>outputs/eval/smolvla_npu_libero_spatial_n1/run.log
+</code></pre></div>
+<p>The result is written to:</p>
+<div class="highlight"><pre><span></span><code>outputs/eval/smolvla_npu_libero_spatial_n1/eval_info.json
+</code></pre></div>
+<p>On my machine, this run produced:</p>
+<table>
+<thead>
+<tr>
+<th>Backend</th>
+<th style="text-align: right;">Episodes</th>
+<th style="text-align: right;">Success</th>
+<th style="text-align: right;">Total Eval Time</th>
+<th style="text-align: right;">Avg Time / Episode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NPU</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">90.0%</td>
+<td style="text-align: right;">20864.46 s</td>
+<td style="text-align: right;">2086.45 s</td>
+</tr>
+</tbody>
+</table>
+<h3 id="4-compare-with-the-igpu-baseline">4. Compare with the iGPU baseline</h3>
+<p>The iGPU baseline should be run in an environment where PyTorch can see the
+Strix Halo iGPU through ROCm. The baseline uses the official LeRobot
+<code>SmolVLAPolicy</code> with the same checkpoint and the same LIBERO Spatial benchmark.</p>
+<p>The project iGPU result was:</p>
+<table>
+<thead>
+<tr>
+<th>Backend</th>
+<th style="text-align: right;">Episodes</th>
+<th style="text-align: right;">Success</th>
+<th style="text-align: right;">Total Eval Time</th>
+<th style="text-align: right;">Avg Time / Episode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>iGPU</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">90.0%</td>
+<td style="text-align: right;">458.03 s</td>
+<td style="text-align: right;">45.80 s</td>
+</tr>
+</tbody>
+</table>
+<p>The NPU implementation matched the iGPU smoke success rate on this run
+(<code>90.0%</code> vs <code>90.0%</code>). 
+More detailed benchmark notes are in
+<a href="iron/applications/smolvla_npu3/libero_benchmark_result.md"><code>libero_benchmark_result.md</code></a>,
+and command usage details are in
+<a href="iron/applications/smolvla_npu3/libero_benchmark_usage.md"><code>libero_benchmark_usage.md</code></a>.</p>
+<h3 id="5-optional-paper-style-spatial-run">5. Optional paper-style Spatial run</h3>
+<p>The paper-style Spatial protocol uses 10 rollouts per task, for 100 total
+Spatial rollouts. At the current NPU speed this takes a very long time:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PROJECT_ROOT</span><span class="s2">&quot;</span>
+conda<span class="w"> </span>activate<span class="w"> </span>iron312
+<span class="nb">source</span><span class="w"> </span>/opt/xilinx/xrt/setup.sh
+
+mkdir<span class="w"> </span>-p<span class="w"> </span>outputs/eval/smolvla_npu_libero_spatial_paper_style
+
+python<span class="w"> </span>IRON/iron/applications/smolvla_npu3/run_libero_benchmark.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--n-episodes<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output-dir<span class="w"> </span>outputs/eval/smolvla_npu_libero_spatial_paper_style<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>outputs/eval/smolvla_npu_libero_spatial_paper_style/run.log
+</code></pre></div>
+<p>For day-to-day debugging and grading reproduction, use the 10-episode smoke
+benchmark first.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.3/dist/mermaid.min.js"></script>
+      
+        <script src="../../javascripts/mermaid-zoom.js"></script>
+      
+    
+  </body>
+</html>
